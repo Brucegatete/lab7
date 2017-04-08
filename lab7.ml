@@ -57,7 +57,10 @@ that accepts a shape_adt and returns a float representing the area of
 the shape.
 ....................................................................*)
 let area_adt (s : shape_adt) : float =
-  failwith "area_adt not implemented" ;;
+ match s with
+ | Square (_, s) -> s *. s
+ | Rect (_, w, l) -> w *. l
+ | Circle (_, r) -> (r *. r *. (22. /. 7.));;
 
 (*....................................................................
 Exercise 1B: Write a function that, given a list of elements of type
@@ -65,8 +68,7 @@ shape_adt, returns a list of areas corresponding to every shape.
 ....................................................................*)
     
 let list_area_adt (lst : shape_adt list) : float list =
-  failwith "list_area_adt not implemented" ;;
-
+  List.map area_adt lst;;
 
 (*====================================================================
 Part 2: Interfaces, Classes, Objects
